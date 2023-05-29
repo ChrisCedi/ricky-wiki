@@ -7,6 +7,7 @@ export class UserInformation extends LitElement {
   }
   static get properties() {
     return {
+      name: { type: String },
       characterData: { type: Object },
       charactersList: { type: Array },
     };
@@ -14,6 +15,7 @@ export class UserInformation extends LitElement {
 
   constructor() {
     super();
+    this.name = "";
     this.characterData = {};
     this.charactersList = [];
   }
@@ -21,20 +23,22 @@ export class UserInformation extends LitElement {
   render() {
     return html`
       <div class="container">
-        <search-field @charactersList=${this._handleChangeList}></search-field>
+        <input @input=${this._handleChangeName} placeholder="Search..." />
+
         <character-data .characterData=${this.characterData}></character-data>
       </div>
     `;
   }
 
-  _handleChangeList = (e) => {
-    this.charactersList = e.detail.charactersList;
-    let listToHome = new CustomEvent("listToHome", {
-      detail: { charactersList: this.charactersList },
+  _handleChangeName = (event) => {
+    this.name = event.target?.value;
+
+    let inputChange = new CustomEvent("inputChange", {
+      detail: { inputValue: this.name },
       bubbles: true,
       composed: true,
     });
-    this.dispatchEvent(listToHome);
+    this.dispatchEvent(inputChange);
   };
 }
 
