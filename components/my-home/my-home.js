@@ -9,12 +9,14 @@ export class MyHome extends LitElement {
   static get properties() {
     return {
       characterSelected: { type: Object },
+      charactersList: { type: Array },
     };
   }
 
   constructor() {
     super();
     this.characterSelected = {};
+    this.charactersList = [];
   }
 
   render() {
@@ -22,16 +24,24 @@ export class MyHome extends LitElement {
       <div class="container">
         <my-characters
           @characterSelected=${this._viewCharacter}
+          .charactersList=${this.charactersList}
         ></my-characters>
 
         <user-information
           .characterData=${this.characterSelected}
+          @listToHome=${this._handleChangeList}
         ></user-information>
       </div>
     `;
   }
   _viewCharacter = (e) => {
+    console.log("view", e.detail);
     this.characterSelected = e.detail.characterSelected;
+  };
+
+  _handleChangeList = (list) => {
+    console.log("list", list.detail.charactersList);
+    this.charactersList = list.detail.charactersList;
   };
 }
 

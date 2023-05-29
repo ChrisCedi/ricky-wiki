@@ -20,7 +20,7 @@ export class PaginationBar extends LitElement {
   render() {
     return html` <div class="container">
       <button>Anterior</button>
-      <p>1/42</p>
+      <p>paginación</p>
       <button>Siguiente</button>
     </div>`;
   }

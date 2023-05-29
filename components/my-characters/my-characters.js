@@ -51,12 +51,14 @@ export class MyCharacters extends LitElement {
   }
 
   getCharacters = () => {
-    ApiModule().then((data) => (this.charactersList = data.results));
+    ApiModule("").then((data) => (this.charactersList = data.results));
   };
 
   handleChangeCharacter = (character) => {
     let characterSelected = new CustomEvent("characterSelected", {
-      detail: { characterSelected: character },
+      detail: {
+        characterSelected: character,
+      },
       bubbles: true,
       composed: true,
     });

@@ -8,44 +8,34 @@ export class UserInformation extends LitElement {
   static get properties() {
     return {
       characterData: { type: Object },
+      charactersList: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.characterData = {
-      id: 1,
-      name: "Rick Sanchez",
-      status: "Alive",
-      species: "Human",
-      type: "",
-      gender: "Male",
-      origin: {
-        name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/1",
-      },
-      location: {
-        name: "Earth",
-        url: "https://rickandmortyapi.com/api/location/20",
-      },
-      image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-      episode: [
-        "https://rickandmortyapi.com/api/episode/1",
-        "https://rickandmortyapi.com/api/episode/2",
-      ],
-      url: "https://rickandmortyapi.com/api/character/1",
-      created: "2017-11-04T18:48:46.250Z",
-    };
+    this.characterData = {};
+    this.charactersList = [];
   }
 
   render() {
     return html`
       <div class="container">
-        <search-field></search-field>
+        <search-field @charactersList=${this._handleChangeList}></search-field>
         <character-data .characterData=${this.characterData}></character-data>
       </div>
     `;
   }
+
+  _handleChangeList = (e) => {
+    this.charactersList = e.detail.charactersList;
+    let listToHome = new CustomEvent("listToHome", {
+      detail: { charactersList: this.charactersList },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(listToHome);
+  };
 }
 
 window.customElements.define("user-information", UserInformation);

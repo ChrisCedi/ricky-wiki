@@ -1,5 +1,6 @@
 import { html, LitElement } from "lit";
 import { styles } from "./search-field-styles";
+import { ApiModule } from "../../api/ApiModule";
 
 export class SearchField extends LitElement {
   static get styles() {
@@ -8,13 +9,15 @@ export class SearchField extends LitElement {
 
   static get properties() {
     return {
-      character: { type: Object },
+      name: { type: String },
+      charactersList: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.character = {};
+    this.name = "";
+    this.charactersList = [];
   }
 
   render() {
@@ -23,9 +26,22 @@ export class SearchField extends LitElement {
     </div>`;
   }
 
+  _getCharacters = () => {
+    ApiModule("").then((data) => (this.charactersList = data.results));
+  };
+
   _handleChangeName = (event) => {
-    const input = event.target;
-    this.name = input.value;
+    console.log(event);
+
+    this.name = event.target?.value;
+    ApiModule(this.name).then((data) => (this.charactersList = data.results));
+
+    let charactersList = new CustomEvent("charactersList", {
+      detail: { charactersList: this.charactersList },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(charactersList);
   };
 }
 

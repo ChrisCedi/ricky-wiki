@@ -1,7 +1,10 @@
-export const ApiModule = async (name, page) => {
+export const ApiModule = async (name) => {
+  console.log("name", name);
   try {
     const response = await fetch(
-      `https://rickandmortyapi.com/api/character/?name=rick`
+      name.length === 0
+        ? `https://rickandmortyapi.com/api/character`
+        : `https://rickandmortyapi.com/api/character/?name=${name}`
     );
     const data = await response.json();
     return data;

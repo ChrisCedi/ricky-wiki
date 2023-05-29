@@ -12,10 +12,6 @@ export const styles = css`
     align-items: center;
   }
 
-  .container.clicked {
-    transform: scale(0.9);
-  }
-
   .container:hover {
     transform: scale(1.1);
   }
