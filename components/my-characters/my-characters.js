@@ -14,6 +14,7 @@ export class MyCharacters extends LitElement {
         type: Array,
       },
       characterSelected: { type: Object },
+      statePage: { type: Number },
     };
   }
 
@@ -22,10 +23,7 @@ export class MyCharacters extends LitElement {
     this.info = {};
     this.charactersList = [];
     this.characterSelected = {};
-  }
-
-  firstUpdated() {
-    this.getCharacters();
+    this.statePage = 1;
   }
 
   render() {
@@ -40,23 +38,36 @@ export class MyCharacters extends LitElement {
               html`
                 <character-card
                   .character=${character}
-                  @click=${() => this.handleChangeCharacter(character)}
+                  @click=${() => this._handleChangeCharacter(character)}
                 ></character-card>
               `
           )}
         </div>
-        <div class="footer"><pagination-bar></pagination-bar></div>
+        <div class="footer">
+          <pagination-bar
+            .info=${this.info}
+            @currentPage=${this._changePage}
+          ></pagination-bar>
+        </div>
       </div>
     `;
   }
 
-  getCharacters = () => {
-    ApiModule().then((data) => (this.charactersList = data.results));
+  _changePage = (page) => {
+    this.statePage = page.detail.currentPage;
+    let currentPage = new CustomEvent("currentPage", {
+      detail: { currentPage: this.statePage },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(currentPage);
   };
 
-  handleChangeCharacter = (character) => {
+  _handleChangeCharacter = (character) => {
     let characterSelected = new CustomEvent("characterSelected", {
-      detail: { characterSelected: character },
+      detail: {
+        characterSelected: character,
+      },
       bubbles: true,
       composed: true,
     });

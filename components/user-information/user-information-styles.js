@@ -14,4 +14,11 @@ export const styles = css`
     border-radius: 10px;
     display: flex;
   }
+
+  input {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 10px;
+  }
 `;

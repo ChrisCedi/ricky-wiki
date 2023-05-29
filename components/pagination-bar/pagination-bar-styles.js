@@ -8,5 +8,7 @@ export const styles = css`
   }
   button {
     padding: 8px;
+    font-family: "Quicksand:wght@300", sans-serif;
+    font-weight: 600;
   }
 `;

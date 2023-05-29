@@ -1,5 +1,6 @@
 import { html, LitElement } from "lit";
 import { styles } from "./my-home-styles";
+import { ApiModule } from "../../api/ApiModule";
 
 export class MyHome extends LitElement {
   static get styles() {
@@ -9,12 +10,24 @@ export class MyHome extends LitElement {
   static get properties() {
     return {
       characterSelected: { type: Object },
+      charactersList: { type: Array },
+      info: { type: Object },
+      currentPage: { type: Number },
+      name: { type: String },
     };
   }
 
   constructor() {
     super();
     this.characterSelected = {};
+    this.charactersList = [];
+    this.info = {};
+    this.currentPage = 1;
+    this.name = "";
+  }
+
+  firstUpdated() {
+    this._handleChangeList({ detail: { inputValue: "" } });
   }
 
   render() {
@@ -22,16 +35,37 @@ export class MyHome extends LitElement {
       <div class="container">
         <my-characters
           @characterSelected=${this._viewCharacter}
+          .charactersList=${this.charactersList}
+          .info=${this.info}
+          @currentPage=${this._changePage}
         ></my-characters>
 
         <user-information
           .characterData=${this.characterSelected}
+          @inputChange=${this._handleChangeList}
         ></user-information>
       </div>
     `;
   }
   _viewCharacter = (e) => {
     this.characterSelected = e.detail.characterSelected;
+  };
+
+  _changePage(e) {
+    this.currentPage = e.detail.currentPage;
+    this._getCharacters(this.name, this.currentPage);
+  }
+
+  _handleChangeList = (list) => {
+    this.name = list.detail.inputValue;
+    this._getCharacters(this.name, this.currentPage);
+  };
+
+  _getCharacters = (name, page) => {
+    ApiModule(this.name, this.currentPage).then((data) => {
+      this.charactersList = data.results;
+      this.info = data.info;
+    });
   };
 }
 
