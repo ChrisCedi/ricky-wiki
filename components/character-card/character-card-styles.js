@@ -16,6 +16,21 @@ export const styles = css`
     transform: scale(1.1);
   }
 
+  .active {
+    display: flex;
+    justify-content: center;
+    background-color: #abebc6;
+    margin: 20px 30px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    align-items: center;
+  }
+
+  .active:hover {
+    transform: scale(1.1);
+  }
+
   .image-card {
     height: 40px;
     border-radius: 50%;

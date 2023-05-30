@@ -15,6 +15,7 @@ export class MyCharacters extends LitElement {
       },
       characterSelected: { type: Object },
       statePage: { type: Number },
+      id: { type: String },
     };
   }
 
@@ -24,6 +25,7 @@ export class MyCharacters extends LitElement {
     this.charactersList = [];
     this.characterSelected = {};
     this.statePage = 1;
+    this.id = "";
   }
 
   render() {
@@ -64,6 +66,11 @@ export class MyCharacters extends LitElement {
   };
 
   _handleChangeCharacter = (character) => {
+    console.log(character);
+    this.charactersList = this.charactersList.map((item) => ({
+      ...item,
+      active: item.id === character.id,
+    }));
     let characterSelected = new CustomEvent("characterSelected", {
       detail: {
         characterSelected: character,

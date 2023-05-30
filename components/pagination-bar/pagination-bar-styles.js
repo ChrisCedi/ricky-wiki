@@ -10,5 +10,10 @@ export const styles = css`
     padding: 8px;
     font-family: "Quicksand:wght@300", sans-serif;
     font-weight: 600;
+    background-color: #abebc6;
+  }
+
+  p {
+    font-family: "Quicksand:wght@300", sans-serif;
   }
 `;

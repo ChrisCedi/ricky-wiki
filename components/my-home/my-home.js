@@ -1,6 +1,7 @@
 import { html, LitElement } from "lit";
 import { styles } from "./my-home-styles";
 import { ApiModule } from "../../api/ApiModule";
+import { listMap } from "./helpers";
 
 export class MyHome extends LitElement {
   static get styles() {
@@ -49,6 +50,16 @@ export class MyHome extends LitElement {
   }
   _viewCharacter = (e) => {
     this.characterSelected = e.detail.characterSelected;
+    setTimeout(() => {
+      this._selectCharacter(e.detail.characterSelected);
+    }, 100);
+  };
+
+  _selectCharacter = (character) => {
+    this.charactersList = this.charactersList.map((item) => ({
+      ...item,
+      active: item.id === character.id,
+    }));
   };
 
   _changePage(e) {
@@ -63,7 +74,7 @@ export class MyHome extends LitElement {
 
   _getCharacters = (name, page) => {
     ApiModule(this.name, this.currentPage).then((data) => {
-      this.charactersList = data.results;
+      this.charactersList = listMap(data.results);
       this.info = data.info;
     });
   };

@@ -23,7 +23,11 @@ export class UserInformation extends LitElement {
   render() {
     return html`
       <div class="container">
-        <input @input=${this._handleChangeName} placeholder="Search..." />
+        <p>Buscar</p>
+        <input
+          @input=${this._handleChangeName}
+          placeholder="Ex: Rick Sanchez"
+        />
 
         <character-data .characterData=${this.characterData}></character-data>
       </div>
