@@ -7,16 +7,22 @@ export const styles = css`
     padding: 35px;
   }
 
+  .select-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .character-container {
     background-color: white;
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 15px 25px;
     border-radius: 20px;
     display: flex;
   }
 
   .body {
-    padding-left: 30px;
+    padding-left: 25px;
   }
 
   h1 {
@@ -27,23 +33,29 @@ export const styles = css`
   .information {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-gap: 40px;
+    grid-gap: 30px;
+  }
+
+  .box-data {
+    padding-bottom: 10px;
   }
 
   .subtitle {
     font-weight: 600;
     text-transform: uppercase;
-    padding-bottom: 0;
+    font-family: "Quicksand:wght@300", sans-serif;
+  }
+  .infoText {
+    font-family: "Quicksand:wght@300", sans-serif;
+  }
+  p {
+    margin: 0;
   }
 
   .avatar {
-    height: 300px;
+    height: 260px;
     border-radius: 20px;
     margin-top: 20px;
-  }
-
-  p {
-    font-family: "Quicksand:wght@300", sans-serif;
   }
 
   .status_alive {
@@ -51,11 +63,13 @@ export const styles = css`
     width: fit-content;
     padding: 12px;
     border-radius: 10px;
+    font-family: "Quicksand:wght@300", sans-serif;
   }
   .status_dead {
     background-color: #ec7063;
     width: fit-content;
     padding: 12px;
     border-radius: 10px;
+    font-family: "Quicksand:wght@300", sans-serif;
   }
 `;

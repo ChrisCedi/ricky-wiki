@@ -4,7 +4,7 @@ export const styles = css`
   .container {
     background-color: #f2f3f4;
     height: 100vh;
-    padding: 35px;
+    padding: 10px 40px;
   }
 
   .character-container {
@@ -17,8 +17,14 @@ export const styles = css`
 
   input {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     font-size: 20px;
     border-radius: 10px;
+    margin-bottom: 45px;
+  }
+
+  p {
+    margin-bottom: 6px;
+    font-family: "Quicksand:wght@300", sans-serif;
   }
 `;

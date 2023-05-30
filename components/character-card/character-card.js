@@ -18,7 +18,7 @@ export class CharacterCard extends LitElement {
   }
 
   render() {
-    return html` <div class="container">
+    return html` <div class=${this.character.active ? "active" : "container"}>
       <img
         src=${this.character.image}
         alt=${this.character.name}

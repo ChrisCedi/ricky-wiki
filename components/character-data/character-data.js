@@ -30,33 +30,33 @@ export class CharacterData extends LitElement {
               <h1>${this.characterData.name}</h1>
               <div class="information">
                 <div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">Type</p>
-                    <p>
+                    <p class="infoText">
                       ${this.characterData?.type?.length > 0
                         ? html`<p>${this.characterData.type}</p>`
                         : html`<p>Not defined</p>`}
                     </p>
                   </div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">Species</p>
-                    <p>${this.characterData.species}</p>
+                    <p class="infoText">${this.characterData.species}</p>
                   </div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">Gender</p>
-                    <p>${this.characterData.gender}</p>
+                    <p class="infoText">${this.characterData.gender}</p>
                   </div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">Location</p>
-                    <p>${this.characterData.location?.name}</p>
+                    <p class="infoText">${this.characterData.location?.name}</p>
                   </div>
                 </div>
                 <div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">ID</p>
-                    <p>${this.characterData.id}</p>
+                    <p class="infoText">${this.characterData.id}</p>
                   </div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">Status</p>
                     <p
                       class=${this.characterData.status == "Alive"
@@ -66,16 +66,16 @@ export class CharacterData extends LitElement {
                       ${this.characterData.status}
                     </p>
                   </div>
-                  <div>
+                  <div class="box-data">
                     <p class="subtitle">Origin</p>
-                    <p>${this.characterData.origin?.name}</p>
+                    <p class="infoText">${this.characterData.origin?.name}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         `
-      : html`<p>Seleccionar</p>`;
+      : html`<div class="select-box"><p>Select a character</p></div>`;
   }
 }
 
