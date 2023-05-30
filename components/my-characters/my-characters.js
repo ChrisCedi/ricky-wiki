@@ -66,7 +66,6 @@ export class MyCharacters extends LitElement {
   };
 
   _handleChangeCharacter = (character) => {
-    console.log(character);
     this.charactersList = this.charactersList.map((item) => ({
       ...item,
       active: item.id === character.id,
